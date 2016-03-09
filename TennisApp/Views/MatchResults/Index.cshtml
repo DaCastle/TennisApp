@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TennisApp.Models.MatchResults>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Match Results</h2>
+
+<p>
+    @Html.ActionLink("Create New Entry", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.player1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.player2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gameScore)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.player1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.player2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gameScore)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MatchId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MatchId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MatchId })
+        </td>
+    </tr>
+}
+
+</table>

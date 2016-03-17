@@ -12,7 +12,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         bool AddUserAndRole(TennisApp.Models.ApplicationDbContext context)
@@ -25,9 +25,9 @@
                 new UserStore<ApplicationUser>(context));
             var user = new ApplicationUser()
             {
-                UserName = "dakota.castleberg18@gmail.com",
+                UserName = "dakota.castleberg@my.uwrf.edu",
             };
-            ir = um.Create(user, "sh1kamaru8");
+            ir = um.Create(user, "Kit@kat1");
             if (ir.Succeeded == false)
                 return ir.Succeeded;
             ir = um.AddToRole(user.Id, "canEdit");
@@ -49,14 +49,14 @@
             }
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            UserManager.AddToRole("66d8d594-e599-4bd5-b78b-0e0e8bb92af1", "canEdit");
+            UserManager.AddToRole("b345e223-26b1-44f6-8fa6-1f817a8a69fe", "canEdit");
 
             //context.Roles.AddOrUpdate(r => r.Name,
             //    new IdentityRole { Name = "canEdit" },
             //    new IdentityRole { Name = "canView" });
 
 
-            // AddUserAndRole(context);
+             AddUserAndRole(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

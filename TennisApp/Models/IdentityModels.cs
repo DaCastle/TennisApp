@@ -31,5 +31,7 @@ namespace TennisApp.Models
         }
 
         public System.Data.Entity.DbSet<TennisApp.Models.MatchResults> MatchResults { get; set; }
+
+        public System.Data.Entity.DbSet<TennisApp.Models.NoteBoard> NoteBoards { get; set; }
     }
 }

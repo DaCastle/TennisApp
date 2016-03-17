@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Match Results</h2>
+<h2>Always good to keep track of results!</h2>
 
 <p>
-    @Html.ActionLink("Create New Entry", "Create")
+    @Html.ActionLink("Create New Match data", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,15 +18,18 @@
             @Html.DisplayNameFor(model => model.player2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            @Html.DisplayNameFor(model => model.matchDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.gameScore)
+            @Html.DisplayNameFor(model => model.setScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.addedBy)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Reverse()) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.player1)
@@ -35,10 +38,13 @@
             @Html.DisplayFor(modelItem => item.player2)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.date)
+            @Html.DisplayFor(modelItem => item.matchDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.gameScore)
+            @Html.DisplayFor(modelItem => item.setScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.addedBy)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MatchId }) |

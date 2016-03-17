@@ -10,109 +10,111 @@ using TennisApp.Models;
 
 namespace TennisApp.Controllers
 {
-    public class MatchResultsController : Controller
+    public class NoteBoardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: MatchResults
+        // GET: NoteBoards
         public ActionResult Index()
         {
-            return View(db.MatchResults.ToList());
+            return View(db.NoteBoards.ToList());
         }
 
-        // GET: MatchResults/Details/5
+        // GET: NoteBoards/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MatchResults matchResults = db.MatchResults.Find(id);
-            if (matchResults == null)
+            NoteBoard noteBoard = db.NoteBoards.Find(id);
+            if (noteBoard == null)
             {
                 return HttpNotFound();
             }
-            return View(matchResults);
+            return View(noteBoard);
         }
 
-        // GET: MatchResults/Create
+        // GET: NoteBoards/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MatchResults/Create
+        // POST: NoteBoards/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MatchId,player1,player2,matchDate,setScore,addedBy")] MatchResults matchResults)
+        public ActionResult Create([Bind(Include = "eventId,note,userName,date")] NoteBoard noteBoard)
         {
             if (ModelState.IsValid)
             {
-                matchResults.addedBy = HttpContext.User.Identity.Name;
-                db.MatchResults.Add(matchResults);
+                noteBoard.userName = HttpContext.User.Identity.Name;
+                noteBoard.date = DateTime.Now;
+                db.NoteBoards.Add(noteBoard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(matchResults);
+            return View(noteBoard);
         }
 
-        // GET: MatchResults/Edit/5
+        // GET: NoteBoards/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MatchResults matchResults = db.MatchResults.Find(id);
-            if (matchResults == null)
+            NoteBoard noteBoard = db.NoteBoards.Find(id);
+            if (noteBoard == null)
             {
                 return HttpNotFound();
             }
-            return View(matchResults);
+            return View(noteBoard);
         }
 
-        // POST: MatchResults/Edit/5
+        // POST: NoteBoards/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MatchId,player1,player2,matchDate,setScore,addedBy")] MatchResults matchResults)
+        public ActionResult Edit([Bind(Include = "eventId,note,userName,date")] NoteBoard noteBoard)
         {
             if (ModelState.IsValid)
-            {
-                matchResults.addedBy = HttpContext.User.Identity.Name;
-                db.Entry(matchResults).State = EntityState.Modified;
+            {             
+                noteBoard.userName = HttpContext.User.Identity.Name;
+                noteBoard.date = DateTime.Now;
+                db.Entry(noteBoard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(matchResults);
+            return View(noteBoard);
         }
 
-        // GET: MatchResults/Delete/5
+        // GET: NoteBoards/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MatchResults matchResults = db.MatchResults.Find(id);
-            if (matchResults == null)
+            NoteBoard noteBoard = db.NoteBoards.Find(id);
+            if (noteBoard == null)
             {
                 return HttpNotFound();
             }
-            return View(matchResults);
+            return View(noteBoard);
         }
 
-        // POST: MatchResults/Delete/5
+        // POST: NoteBoards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MatchResults matchResults = db.MatchResults.Find(id);
-            db.MatchResults.Remove(matchResults);
+            NoteBoard noteBoard = db.NoteBoards.Find(id);
+            db.NoteBoards.Remove(noteBoard);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

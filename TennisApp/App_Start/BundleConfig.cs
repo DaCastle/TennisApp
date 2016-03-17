@@ -24,7 +24,7 @@ namespace TennisApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/slate-bootstrap.css",
                        "~/Content/BootStrapSocial.css",
                         "~/css/font-awesome.css",
                       "~/Content/site.css"));
